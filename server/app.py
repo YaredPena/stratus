@@ -8,10 +8,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-CORS(app, resources={r"/*": {"origins": "*"}})
-
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "dev-secret")
+
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 ## established redis
 redis_client = redis.Redis.from_url(os.environ["REDIS_URL"], decode_responses=True)

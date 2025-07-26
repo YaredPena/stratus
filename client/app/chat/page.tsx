@@ -7,6 +7,7 @@ export default function chat() {
         <div className={styles.container}>
             <h1 > Main Content here </h1>
             <Link className={styles.btn} href="/">Home</Link>
+            <button className={styles.btn}>Logout</button>
         </div>
         
     );

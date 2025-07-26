@@ -15,6 +15,8 @@ export interface loginData {
 export interface apiResponse {
     email: string;
     password: string;
+    message: string;
+    error: string;
 };
 
 const api = axios.create({
