@@ -1,11 +1,14 @@
 from flask import Flask, request, jsonify, session
 from flask_session import Session
+from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import redis
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
+
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "dev-secret")

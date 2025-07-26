@@ -1,11 +1,34 @@
+'use client';
 import Link from 'next/link';
 import styles from './page.module.css';
+import { useState } from 'react';
+import { signup, signupData } from '../lib/api';
 
 export default function Signup() {
 
     /*
+     async function signup(data) {
+        try {
+            const signupCall = axios.post()
+
+            const result = await signupCall.json();
+            console.log(result);
+
+        } catch {
+
+        }
+    };
+    */
+    /*
     on sign up: Specify datapoints.
-    
+    what is signup passing in?
+    (parameter = data)
+    what is data?
+    a hashmap
+    fn:
+    ln:
+    email:
+    pword:
     user info account stored in db
     user is moved to chat page
     
