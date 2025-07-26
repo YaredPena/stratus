@@ -14,7 +14,7 @@ export default function Home() {
         <p className={styles.subtitle}>
           One stop shop for getting your next smartphone or laptop!
         </p>
-        <Link href="/signup"><button className={styles.ctaButton}>Get Started</button></Link>
+        <Link href="/signup"><button className={styles.enterButton}>Get Started</button></Link>
       </div>
 
       {/* what we provide */}

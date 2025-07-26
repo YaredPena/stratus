@@ -22,9 +22,10 @@
   margin-bottom: 2rem;
 }
 
-.ctaButton {
+.enterButton {
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
+  /*border: 1px solid black*/
   border: none;
   border-radius: 5px;
   background-color: whitesmoke;
@@ -33,7 +34,7 @@
   transition: background-color 0.3s;
 }
 
-.ctaButton:hover {
+.enterButton:hover {
   background-color: #ddd;
 }
 
