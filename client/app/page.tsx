@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -7,17 +8,16 @@ export default function Home() {
   return (
     <main className={styles.main}>
       
-      
       {/* HEADER */}
       <div className={styles.head}>
         <h1 className={styles.title}>Stratus</h1>
         <p className={styles.subtitle}>
           One stop shop for getting your next smartphone or laptop!
         </p>
-        <button className={styles.ctaButton}>Get Started</button>
+        <Link href="/signup"><button className={styles.ctaButton}>Get Started</button></Link>
       </div>
 
-      {/* PAGES */}
+      {/* what we provide */}
       <div className={styles.features}>
 
         <div className={styles.featureCard}>
