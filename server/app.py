@@ -80,6 +80,7 @@ def login():
 @app.route('/logout', methods=['POST'])
 def logout():
     session.clear()
+    session.modifed = True
     return jsonify({'message': 'User Logged Out'}), 200
 
 if __name__ == '__main__':
