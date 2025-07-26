@@ -1,0 +1,82 @@
+/* main: flexbox */
+.main {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT */
+.left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding: 2rem;
+}
+
+.formContainer {
+    max-width: 350px;
+    width: 100%;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.formHeader{
+    padding-bottom: 10px;
+}
+
+.btn {
+    background-color: whitesmoke;
+    color:#4e54c8;
+    border: 1px solid #8f94fb;
+    border-radius: 10px;
+    margin: px;
+    padding: 7.5px;
+    transition: 0.3s, ease-in;
+}
+
+.homebtn {
+    background-color: whitesmoke;
+    color:#4e54c8;
+    border: 1px solid #8f94fb;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 7.5px;
+    transition: 0.3s, ease-in;
+}
+
+.btn:hover {
+    background-color: #ddd;
+}
+
+.homebtn:hover {
+    background-color: #ddd;
+}
+
+.linkText {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.loginLinkText:hover{
+    color: #8f94fb;
+}
+
+/* RIGHT */
+.right {
+    flex: 1;
+    background: #4e54c8;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
