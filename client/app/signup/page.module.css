@@ -1,0 +1,33 @@
+
+.left {
+
+}
+
+/* main is subject to change */ 
+.main {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    width: 400 ;
+    border: 2px solid black;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.btn {
+    background-color: whitesmoke;
+    color:#4e54c8;
+    border: none;
+    border-radius: 10px;
+    margin: 1em;
+    padding: 7.5px;
+    transition: 0.3s, ease-in;
+}
+
+.btn:hover {
+    background-color: #ddd;
+}
