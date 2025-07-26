@@ -2,6 +2,15 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 export default function Signup() {
+
+    /*
+    on sign up: Specify datapoints.
+    
+    user info account stored in db
+    user is moved to chat page
+    
+    
+    */
     return(
         <main className={styles.main}>
             <div className={styles.left}>
