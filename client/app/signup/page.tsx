@@ -5,17 +5,36 @@ export default function Signup() {
     return(
         <main className={styles.main}>
             <div className={styles.left}>
-                <div className={styles.container}>
-                    <h3> Sign Up Form </h3>
-                    <p> First Name: <input /></p>
-                    <p> Last Name: <input /></p>
-                    <p> Email: <input /></p>
-                    <p> Password: <input /></p>
-                    <Link href="/"><button className={styles.btn}>Home</button></Link>
-                    <Link href="/login"><button className={styles.btn}>Login</button></Link>
-                </div>
+                <div className={styles.formContainer}>
 
+                <div className={styles.formHeader}>
+                    <h1>Signup</h1>
+                    <p>Create your account here!</p>
+                </div>    
+
+                <div className={styles.form}>
+                    <p>First Name: </p>
+                    <input type="firstname" placeholder="John"/>
+                    <p>Last Name: </p>
+                    <input type="lastname" placeholder="Doe"/>
+                    <p>Email:</p>
+                    <input type="email" placeholder="Enter your email" />
+                    <p>Password:</p>
+                    <input type="password" placeholder="Enter your password" />
+
+                    {/* need to build signup logic */}
+                    <button className={styles.btn}>Signup</button>
+
+                    <Link href="/"><button className={styles.homebtn}>Home</button></Link>
+                </div>
+                <p className={styles.linkText}> Already have an account? <Link className={styles.loginLinkText} href="/login">Login</Link></p>
+                </div>
+            </div>
+
+            <div className={styles.right}>
+                <h2>Stratus Text.</h2>
+                <p>Stratus Text</p>
             </div>
         </main>
-    )
-}
+    );
+};

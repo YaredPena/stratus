@@ -9,5 +9,5 @@ export default function chat() {
             <Link className={styles.btn} href="/">Home</Link>
         </div>
         
-    )
+    );
 };
