@@ -30,11 +30,8 @@ CORS(
 def email_key(email: str) -> str:
     return f"user:{email}"
 
-@app.route('/signup', methods=['POST', 'OPTIONS'])
+@app.route('/signup', methods=['POST'])
 def signup():
-    if request.method == 'OPTIONS':
-        return _build_cors_preflight_response()
-
     data = request.get_json() or {}
     first_name = data.get('firstname')
     last_name = data.get('lastname')
@@ -58,14 +55,13 @@ def signup():
 
     return jsonify({'message': 'User created successfully'}), 201
 
-@app.route('/login', methods=['POST', 'OPTIONS'])
+@app.route('/login', methods=['POST'])
 def login():
-    if request.method == 'OPTIONS':
-        return _build_cors_preflight_response()
-
     data = request.get_json() or {}
     email = data.get('email')
     password = data.get('password')
+    print(email)
+    print(password)
 
     if not email or not password:
         return jsonify({'error': 'Email and password required'}), 400
@@ -81,11 +77,8 @@ def login():
     session['user'] = email
     return jsonify({'message': 'Login successful'}), 200
 
-@app.route('/logout', methods=['POST', 'OPTIONS'])
+@app.route('/logout', methods=['POST'])
 def logout():
-    if request.method == 'OPTIONS':
-        return _build_cors_preflight_response()
-
     session.clear()
     return jsonify({'message': 'User Logged Out'}), 200
 
