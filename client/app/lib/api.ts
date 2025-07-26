@@ -24,7 +24,9 @@ const api = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true,
 });
 
 export const signup = (data: signupData) => api.post<apiResponse>('/signup', data);
 export const login = (data: loginData) => api.post<apiResponse>('/login', data);
+export const logout = () => api.post('/logout');

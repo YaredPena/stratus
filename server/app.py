@@ -11,7 +11,9 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "dev-secret")
 
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, 
+     resources={r"/*": {"origins": ["http://localhost:3000", "http://127.0.0.1:3000"]}},
+     supports_credentials=True)
 
 ## established redis
 redis_client = redis.Redis.from_url(os.environ["REDIS_URL"], decode_responses=True)
@@ -74,14 +76,10 @@ def login():
     session['user'] = email
     return jsonify({'message': 'Login successful'}), 200
 
-
-'''
-debating on if I need this.... I can clear sessions client side.
 @app.route('/logout', methods=['POST'])
 def logout():
     session.clear()
-    return jsonify({'message': 'Logged out'}), 200
-'''
+    return jsonify({'message' : 'User Logged Out'}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
