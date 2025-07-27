@@ -10,7 +10,7 @@ export default function Home() {
       <div className={styles.head}>
         <h1 className={styles.title}>Stratus</h1>
         <p className={styles.subtitle}>
-          One stop shop for getting your next smartphone or laptop!
+          Your personal AI-powered guide for finding the perfect laptop.
         </p>
         <Link href="/signup"><button className={styles.enterButton}>Get Started</button></Link>
       </div>
@@ -19,18 +19,20 @@ export default function Home() {
       <div className={styles.features}>
 
         <div className={styles.featureCard}>
-          <h3>Best Deals</h3>
-          <p> Somehting about helping user get the best deals.</p>
+          <h3>AI Recommendations</h3>
+          <p> Our RAG-based AI analyzes specs, performance, and pricing to suggest the
+      best tech options tailored to your needs.</p>
         </div>
 
         <div className={styles.featureCard}>
-          <h3>Cater to your interest</h3>
-          <p>how our webapp will cater to what the tech the user is interested in.</p>
+          <h3>Personalized Insights</h3>
+          <p>Whether it's gaming, programming, or productivity, Stratus helps you 
+      discover devices that fit your lifestyle.</p>
         </div>
 
         <div className={styles.featureCard}>
           <h3>Trusted Brands</h3>
-          <p>Common Brands people have seen before.</p>
+          <p>Recommendations are guaranteed to provide a reliable option using common, well known brands.</p>
         </div>
 
       </div>

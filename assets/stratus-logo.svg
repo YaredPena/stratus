@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="720" height="200" viewBox="0 0 720 200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Stratus – project logo</title>
+  <desc id="desc">Wordmark logo for Stratus with a purple/indigo gradient</desc>
+
+  <defs>
+    <linearGradient id="stratus-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4e54c8"/>
+      <stop offset="100%" stop-color="#8f94fb"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- optional subtle background glow behind the text -->
+  <g filter="url(#shadow)">
+    <text x="50%" y="55%" text-anchor="middle"
+          font-family="Poppins, Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Ubuntu, sans-serif"
+          font-weight="800"
+          font-size="120"
+          fill="url(#stratus-gradient)">
+      Stratus
+    </text>
+  </g>
+
+  <!-- soft underline accent -->
+  <rect x="180" y="135" width="360" height="8" rx="4" fill="url(#stratus-gradient)" opacity="0.35"/>
+</svg>
