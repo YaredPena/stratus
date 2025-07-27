@@ -30,3 +30,4 @@ const api = axios.create({
 export const signup = (data: signupData) => api.post<apiResponse>('/signup', data);
 export const login = (data: loginData) => api.post<apiResponse>('/login', data);
 export const logout = () => api.post('/logout');
+export const recommend = (query: string) => api.post('/recommend', { query });

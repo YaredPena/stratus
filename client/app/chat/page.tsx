@@ -1,8 +1,9 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { logout as apiLogout } from '../lib/api';
+import { logout as apiLogout, recommend } from '../lib/api';
 import styles from './page.module.css';
+import { resolveCaa } from 'dns';
 
 export default function Chat() {
   const router = useRouter();
@@ -12,15 +13,36 @@ export default function Chat() {
   const [input, setInput] = useState('');
   const [saved, setSaved] = useState<string[]>([]);
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!input.trim()) return;
     setMessages([...messages, { sender: 'user', text: input }]);
+    const query = input;
     setInput('');
-    // Best buy API/ RAG LLM
+
+    try {
+      const response = await recommend(query);
+      const result = response.data.recommendations;
+
+      let botText = '';
+      if (result.length > 0) {
+        //botText = result.map((item: any) => `${item.manufacturer} ${item.model_name} - ${item.price}`).join('\n');
+        botText = result.forEach((item: any) => {
+          const cardText = `${item.manufacturer} ${item.model_name} - $${item.price}`;
+          setMessages((prev) => [...prev, { sender: 'bot', text: cardText }]);
+        });
+      } else {
+        let defaultResponse = "No products match the description";
+        return defaultResponse;
+      }
+      setMessages((prev) => [...prev, { sender: 'bot', text: botText }]);
+
+    } catch(error) {
+      console.error(error);
+      setMessages((prev) => [...prev, { sender: 'bot', text: 'Something went wrong fetching recommendations.' }]);
+    }
   };
 
-
-  /* save the user's suggestions onto the database this shouldn't be done on the client-side*/
+  /* save the user's suggestions onto the database this shouldn't be done on the client-side */
   const saveSuggestion = (text: string) => {
     setSaved((prev) => [...prev, text]);
   };
