@@ -106,7 +106,7 @@ def recommend():
     sims = cosine_similarity(q_vec, embeddings)[0]
     top_idx = sims.argsort()[-3:][::-1]
 
-    result = df.iloc[top_idx][["manufacturer", "model_name", "price"]].to_dict(orient="records")
+    result = (df.iloc[top_idx][["manufacturer", "model_name", "price_usd"]].rename(columns={"price_usd": "price"}).to_dict(orient="records"))
     return jsonify({"recommendations": result})
 
 if __name__ == '__main__':

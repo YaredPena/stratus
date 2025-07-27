@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { logout as apiLogout, recommend } from '../lib/api';
 import styles from './page.module.css';
-import { resolveCaa } from 'dns';
+//import { resolveCaa } from 'dns';
 
 export default function Chat() {
   const router = useRouter();
