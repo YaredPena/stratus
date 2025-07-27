@@ -4,9 +4,18 @@ from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import redis
 import os
+import pandas as pd
+import numpy as np
 from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 
 load_dotenv()
+
+### pull up pickle @ startup
+df = pd.read_pickle("data/laptops.pkl")
+embeddings = np.load("data/laptop_embeddings.npy")
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
@@ -30,6 +39,8 @@ CORS(
 def email_key(email: str) -> str:
     return f"user:{email}"
 
+
+## user endpoints ##
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json() or {}
@@ -80,8 +91,23 @@ def login():
 @app.route('/logout', methods=['POST'])
 def logout():
     session.clear()
-    session.modifed = True
+    session.modified = True
     return jsonify({'message': 'User Logged Out'}), 200
+
+## RAG endpoint ##
+@app.route("/recommend", methods=["POST"])
+def recommend():
+    body = request.get_json() or {}
+    query = body.get("query", "").strip()
+    if not query:
+        return jsonify({"error": "query required!"}), 400
+    
+    q_vec = model.encode([query])
+    sims = cosine_similarity(q_vec, embeddings)[0]
+    top_idx = sims.argsort()[-3:][::-1]
+
+    result = df.iloc[top_idx][["manufacturer", "model_name", "price"]].to_dict(orient="records")
+    return jsonify({"recommendations": result})
 
 if __name__ == '__main__':
     app.run(debug=True)
