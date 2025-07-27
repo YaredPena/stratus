@@ -20,7 +20,7 @@
 <h2>AI STORYTELLING:</h2>
 
 <h2>QUICK START:</h2>
-  <h3>PREREQUISITES:</h3>
+  <h2>PREREQUISITES:</h2>
   <h4> 1. CLONE: </h4>
 
   <h4> 2. VENV: </h4>
