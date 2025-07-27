@@ -1,30 +1,46 @@
 from flask import Flask, request, jsonify, session
 from flask_session import Session
+from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import redis
 import os
+import pandas as pd
+import numpy as np
 from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 
 load_dotenv()
 
-app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY", "dev-secret")
+### pull up pickle @ startup
+df = pd.read_pickle("data/laptops.pkl")
+embeddings = np.load("data/laptop_embeddings.npy")
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
-## established redis
+app = Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY")
+
 redis_client = redis.Redis.from_url(os.environ["REDIS_URL"], decode_responses=True)
 
-## session store: redis
-app.config["SESSION_TYPE"] = "redis"
-app.config["SESSION_REDIS"] = redis_client
-app.config["SESSION_PERMANENT"] = False
+app.config['SESSION_TYPE'] = 'redis'
+app.config['SESSION_REDIS'] = redis_client
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_USE_SIGNER'] = True
+app.config['SESSION_KEY_PREFIX'] = 'session:'
+app.config['SESSION_SERIALIZER'] = 'json'
 Session(app)
 
-## redis key for my email.
-def email_key(email: str) -> str:
-    ## my email@email.com <-- string input
-    ## returning str output --> the email itself.
-    return f"user:{email}" 
+CORS(
+    app,
+    origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    supports_credentials=True
+)
 
+def email_key(email: str) -> str:
+    return f"user:{email}"
+
+
+## user endpoints ##
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json() or {}
@@ -43,7 +59,6 @@ def signup():
         return jsonify({'error': 'User already exists'}), 409
 
     pass_hash = generate_password_hash(password)
-
     redis_client.hset(email_key(email), mapping={
         "email": email,
         "password": pass_hash
@@ -56,6 +71,8 @@ def login():
     data = request.get_json() or {}
     email = data.get('email')
     password = data.get('password')
+    ##print(email)
+    ##print(password)
 
     if not email or not password:
         return jsonify({'error': 'Email and password required'}), 400
@@ -66,19 +83,31 @@ def login():
 
     stored_hash = redis_client.hget(key, "password")
     if not check_password_hash(stored_hash, password):
-        return jsonify({'error': 'Invalid credentials'}), 401
+        return jsonify({'error': 'Incorrect email or password'}), 401
 
     session['user'] = email
     return jsonify({'message': 'Login successful'}), 200
 
-
-'''
-debating on if I need this.... I can clear sessions client side.
 @app.route('/logout', methods=['POST'])
 def logout():
     session.clear()
-    return jsonify({'message': 'Logged out'}), 200
-'''
+    session.modified = True
+    return jsonify({'message': 'User Logged Out'}), 200
+
+## RAG endpoint ##
+@app.route("/recommend", methods=["POST"])
+def recommend():
+    body = request.get_json() or {}
+    query = body.get("query", "").strip()
+    if not query:
+        return jsonify({"error": "query required!"}), 400
+    
+    q_vec = model.encode([query])
+    sims = cosine_similarity(q_vec, embeddings)[0]
+    top_idx = sims.argsort()[-3:][::-1]
+
+    result = (df.iloc[top_idx][["manufacturer", "model_name", "price_usd"]].rename(columns={"price_usd": "price"}).to_dict(orient="records"))
+    return jsonify({"recommendations": result})
 
 if __name__ == '__main__':
     app.run(debug=True)
