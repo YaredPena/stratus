@@ -1,6 +1,10 @@
 flask
+flask-session
 flask-cors
+redis
+sentence-transformers
+scikit-learn
+gunicorn
 pandas
 numpy
-scikit-learn
-sentence-transformers
+python-dotenv
