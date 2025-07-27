@@ -12,7 +12,6 @@
 
 <h2>THE WEBSITE:</h2>
 
-
 <h2>THE GOAL:</h2>
 
 
