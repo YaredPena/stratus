@@ -62,7 +62,7 @@ export default function Login() {
             </button>
 
             <Link href="/">
-              <button type="button" className={styles.homebtn}>Home</button>
+              <button type="button" className={styles.homebtn}>Back</button>
             </Link>
           </form>
 
