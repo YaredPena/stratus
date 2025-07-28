@@ -22,13 +22,13 @@ export default function Signup() {
         setError(null);
         setSuccess(null);
         try {
-        const response = await signup(form);
-        setSuccess(response.data.message ?? null);
-        console.log(response.data);
-        router.push('/chat');
+            const response = await signup(form);
+            setSuccess(response.data.message ?? null);
+            console.log(response.data);
+            router.push('/chat');
         } catch (error: any) {
-        console.error(error);
-        setError(error.response?.data?.error);
+            console.error(error);
+            setError(error.response?.data?.error);
         }
     };
 
