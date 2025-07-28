@@ -94,8 +94,8 @@ export default function Signup() {
             </div>
 
             <div className={styles.right}>
-            <h2>Stratus Text.</h2>
-            <p>Stratus Text</p>
+            <h2>Stratus</h2>
+            {/*<p>Stratus Text</p>*/}
             </div>
         </main>
     );

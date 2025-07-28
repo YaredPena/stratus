@@ -79,8 +79,8 @@ export default function Login() {
       </div>
 
       <div className={styles.right}>
-        <h2>Stratus Text.</h2>
-        <p>Stratus Text</p>
+        <h2>Stratus</h2>
+        {/*<p>Stratus Text</p>*/}
       </div>
     </main>
   );
