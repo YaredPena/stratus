@@ -1,126 +1,133 @@
 .chatPage {
-  display: flex;
-  min-height: 100vh;
-  background-color: #181818ff;
-  color: whitesmoke;
+  	display: flex;
+  	min-height: 100vh;
+  	background-color: #181818ff;
+  	color: whitesmoke;
 }
 
 .chatSection {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
+	flex: 2;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
 }
 
 .header h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  background: linear-gradient(135deg, #4e54c8, #8f94fb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+	font-size: 2rem;
+	margin-bottom: 10px;
+	background: linear-gradient(135deg, #4e54c8, #8f94fb);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .chatContainer {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  	flex: 1;
+  	overflow-y: auto;
+  	display: flex;
+  	flex-direction: column;
+  	gap: 10px;
 }
 
 .message {
-  padding: 10px 15px;
-  border-radius: 15px;
-  max-width: 70%;
-  word-wrap: break-word;
-  position: relative;
+  	padding: 10px 15px;
+  	border-radius: 15px;
+  	max-width: 70%;
+  	word-wrap: break-word;
+  	position: relative;
 }
 
 .userMessage {
-  align-self: flex-end;
-  background: linear-gradient(135deg, #4e54c8, #8f94fb);
-  color: white;
+  	align-self: flex-end;
+  	background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  	color: white;
 }
 
-.botMessage {
-  align-self: flex-start;
-  background: whitesmoke;
-  color: #181818ff;
+.botMessage  {
+  	align-self: flex-start;
+  	background: whitesmoke;
+  	color: #181818ff;
+	/*padding: 15px;*/
+  	padding-bottom: 10px;
+  	margin-bottom: 20px;
+	white-space: pre-wrap;
+	border: none;
+	border-radius: 10px;
 }
 
 .saveBtn {
-  position: absolute;
-  bottom: -18px;
-  right: 10px;
-  background: transparent;
-  color: #4e54c8;
-  font-size: 12px;
-  cursor: pointer;
-  border: none;
+  	position: absolute;
+  	bottom: -18px;
+  	right: 10px;
+  	background: transparent;
+  	color: #4e54c8;
+  	font-size: 12px;
+  	cursor: pointer;
+  	border: none;
 }
 
 .inputContainer {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
+  	display: flex;
+  	gap: 10px;
+  	margin-top: 15px;
 }
 
 .inputContainer input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  background: whitesmoke;
-  color: #181818ff;
+  	flex: 1;
+  	padding: 10px;
+  	border-radius: 8px;
+  	border: none;
+  	outline: none;
+  	background: whitesmoke;
+  	color: #181818ff;
 }
 
 .inputContainer button {
-  background: #4e54c8;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  	background: #4e54c8;
+  	border: none;
+  	color: white;
+  	padding: 10px 20px;
+  	border-radius: 8px;
+  	cursor: pointer;
+  	transition: background 0.3s ease;
 }
 
 .inputContainer button:hover {
-  background: #8f94fb;
+  	background: #8f94fb;
 }
 
 .catalogSection {
-  flex: 1;
-  background-color: #202020;
-  padding: 20px;
-  border-left: 1px solid #dddddd;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  	flex: 1;
+  	background-color: #202020;
+  	padding: 20px;
+  	border-left: 1px solid #dddddd;
+  	display: flex;
+  	flex-direction: column;
+  	gap: 10px;
 }
 
 .catalogSection h2 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  	font-size: 1.2rem;
+  	margin-bottom: 10px;
 }
 
 .noSaved {
-  color: #dddddd;
+  	color: #dddddd;
 }
 
 .savedList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  	list-style: none;
+  	padding: 0;
+  	margin: 0;
+  	display: flex;
+  	flex-direction: column;
+  	gap: 10px;
 }
 
 .savedCard {
-  background: whitesmoke;
-  color: #181818ff;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 0.9rem;
+  	background: whitesmoke;
+  	color: #181818ff;
+  	padding: 10px;
+  	border-radius: 8px;
+  	font-size: 0.9rem;
+	white-space: pre-wrap;
 }

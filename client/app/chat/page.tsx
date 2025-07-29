@@ -23,18 +23,19 @@ export default function Chat() {
       const response = await recommend(query);
       const result = response.data.recommendations;
 
-      let botText = '';
+      
       if (result.length > 0) {
-        //botText = result.map((item: any) => `${item.manufacturer} ${item.model_name} - ${item.price}`).join('\n');
-        botText = result.forEach((item: any) => {
+		const botText = result.map((item: any) => `${item.manufacturer} ${item.model_name} - ${item.price}`).join('\n\n');
+        setMessages((prev) => [...prev, { sender: 'bot', text: botText }]);
+        
+        /*botText = result.forEach((item: any) => {
           const cardText = `${item.manufacturer} ${item.model_name} - $${item.price}`;
-          setMessages((prev) => [...prev, { sender: 'bot', text: cardText }]);
-        });
+        });*/
       } else {
-        let defaultResponse = "No products match the description";
-        return defaultResponse;
+        const defaultResponse = "No products match the description";
+		setMessages((prev) => [...prev, { sender: 'bot', text: defaultResponse }]);
+        ///return defaultResponse;
       }
-      setMessages((prev) => [...prev, { sender: 'bot', text: botText }]);
 
     } catch(error) {
       console.error(error);

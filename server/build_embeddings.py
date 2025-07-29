@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
 from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity 
 
 df = pd.read_csv("data/laptops_train.csv")
 
-##print(list(df.columns))
 print("Original columns:", list(df.columns))
 
 ### cleaning column names, they had '_storage'
@@ -37,11 +37,24 @@ df['description'] = df.apply(
     axis=1
 )
 
-
 ### load the model/embedding 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 print("Encoding descriptions...")
 embeddings = model.encode(df['description'].tolist(), show_progress_bar=True)
+
+
+def search_laptops(query, k=3):
+    q_embedding = model.encode([query])
+
+    similarities = cosine_similarity(q_embedding, embeddings)[0]
+    top_indices =  similarities.argsort()[-k:][::-1]
+
+    result = []
+    for i in top_indices:
+        row = df.iloc[i]
+        line = f"{row['manufacturer']} {row['model_name']} - ${row['price_usd']}"
+        result.append(line)
+    return  "\n".join(result)
 
 ### artifacts saved.
 np.save("data/laptop_embeddings.npy", embeddings)
