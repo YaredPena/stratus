@@ -121,11 +121,11 @@ def recommend():
     return jsonify({"recommendations": result})
 
 
-'''
+
 @app.route("/")
-def healthcheck():
-    return "backend is running."
-'''
+def hi():
+    return "backend is up"
+
 
 
 if __name__ == '__main__':
