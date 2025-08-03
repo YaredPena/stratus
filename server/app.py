@@ -12,10 +12,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 load_dotenv()
 
-### pull up pickle @ startup
-df = pd.read_pickle("data/laptops.pkl")
-embeddings = np.load("data/laptop_embeddings.npy")
-model = SentenceTransformer("all-MiniLM-L6-v2")
+df = None
+embeddings = None
+model = None
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
@@ -35,6 +34,14 @@ CORS(
     origins=["http://localhost:3000", "http://127.0.0.1:3000"],
     supports_credentials=True
 )
+
+@app.before_first_request
+def load_model_files():
+    global df, embeddings, model
+    df = pd.read_pickle("data/laptops.pkl")
+    embeddings = np.load("data/laptop_embeddings.npy")
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+
 
 def email_key(email: str) -> str:
     return f"user:{email}"
@@ -66,13 +73,12 @@ def signup():
 
     return jsonify({'message': 'User created successfully'}), 201
 
+
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json() or {}
     email = data.get('email')
     password = data.get('password')
-    ##print(email)
-    ##print(password)
 
     if not email or not password:
         return jsonify({'error': 'Email and password required'}), 400
@@ -88,11 +94,13 @@ def login():
     session['user'] = email
     return jsonify({'message': 'Login successful'}), 200
 
+
 @app.route('/logout', methods=['POST'])
 def logout():
     session.clear()
     session.modified = True
     return jsonify({'message': 'User Logged Out'}), 200
+
 
 ## RAG endpoint ##
 @app.route("/recommend", methods=["POST"])
@@ -101,15 +109,17 @@ def recommend():
     query = body.get("query", "").strip()
     if not query:
         return jsonify({"error": "query required!"}), 400
-    
+
     q_vec = model.encode([query])
     sims = cosine_similarity(q_vec, embeddings)[0]
     top_idx = sims.argsort()[-3:][::-1]
 
-    result = (df.iloc[top_idx][["manufacturer", "model_name", "price_usd"]].rename(columns={"price_usd": "price"}).to_dict(orient="records"))
+    result = (df.iloc[top_idx][["manufacturer", "model_name", "price_usd"]]
+              .rename(columns={"price_usd": "price"})
+              .to_dict(orient="records"))
     return jsonify({"recommendations": result})
 
+
 if __name__ == '__main__':
-    ##app.run(debug=True)
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
