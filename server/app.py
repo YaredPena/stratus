@@ -35,19 +35,11 @@ CORS(
     supports_credentials=True
 )
 
-@app.before_first_request
-def load_model_files():
-    global df, embeddings, model
-    df = pd.read_pickle("data/laptops.pkl")
-    embeddings = np.load("data/laptop_embeddings.npy")
-    model = SentenceTransformer("all-MiniLM-L6-v2")
-
-
 def email_key(email: str) -> str:
     return f"user:{email}"
 
 
-## user endpoints ##
+## user routes ##
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json() or {}
@@ -102,9 +94,18 @@ def logout():
     return jsonify({'message': 'User Logged Out'}), 200
 
 
-## RAG endpoint ##
+## rag end point
 @app.route("/recommend", methods=["POST"])
 def recommend():
+    global df, embeddings, model
+
+    if df is None or embeddings is None or model is None:
+        print("🔁 Loading model and data files...")
+        df = pd.read_pickle("data/laptops.pkl")
+        embeddings = np.load("data/laptop_embeddings.npy")
+        model = SentenceTransformer("all-MiniLM-L6-v2")
+        print("✅ Model and data loaded.")
+
     body = request.get_json() or {}
     query = body.get("query", "").strip()
     if not query:
@@ -120,6 +121,13 @@ def recommend():
     return jsonify({"recommendations": result})
 
 
+'''
+@app.route("/")
+def healthcheck():
+    return "backend is running."
+'''
+
+
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 5001))
     app.run(host='0.0.0.0', port=port)
