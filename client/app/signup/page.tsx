@@ -1,9 +1,10 @@
 'use client';
 import Link from 'next/link';
-import { useRouter, redirect, RedirectType } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 import { useState } from 'react';
 import { signup, signupData } from '../lib/api';
+import { AxiosError } from 'axios';
 
 export default function Signup() {
     const [form, setForm] = useState<signupData>({
@@ -21,14 +22,16 @@ export default function Signup() {
         e.preventDefault();
         setError(null);
         setSuccess(null);
+        
         try {
             const response = await signup(form);
             setSuccess(response.data.message ?? null);
             console.log(response.data);
             router.push('/chat');
-        } catch (error: any) {
-            console.error(error);
-            setError(error.response?.data?.error);
+        } catch (error:unknown) {
+            const err = error as AxiosError<{ error: string}>;
+            console.error(err);
+            setError(err.response?.data?.error ?? 'signup failed.');
         }
     };
 

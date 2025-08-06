@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 import { useState } from 'react';
 import { login, loginData } from '../lib/api';
+import { AxiosError } from 'axios';
 
 export default function Login() {
   const [form, setForm] = useState<loginData>({
@@ -25,9 +26,10 @@ export default function Login() {
       setSuccess(response.data.message ?? null);
       console.log(response.data);
       router.push('/chat');
-    } catch (error: any) {
-      console.error(error);
-      setError(error.response?.data?.error);
+    } catch (error: unknown) { // wouldn't error be a string
+      const err = error as AxiosError<{ error: string}>;
+      console.error(err);
+      setError(err.response?.data?.error ?? 'login failed.');
     }
   };
 

@@ -26,7 +26,7 @@ export default function Home() {
 
         <div className={styles.featureCard}>
           <h3>Personalized Insights</h3>
-          <p>Whether it's gaming, programming, or productivity, Stratus helps you 
+          <p>Whether it&apos;s gaming, programming, or productivity, Stratus helps you 
       discover devices that fit your lifestyle.</p>
         </div>
 

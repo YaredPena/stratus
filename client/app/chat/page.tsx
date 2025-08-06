@@ -5,6 +5,12 @@ import { logout as apiLogout, recommend } from '../lib/api';
 import styles from './page.module.css';
 //import { resolveCaa } from 'dns';
 
+type Product = {
+  manufacturer : string; 
+  model_name : string;
+  price : number;
+};
+
 export default function Chat() {
   const router = useRouter();
   const [messages, setMessages] = useState([
@@ -23,9 +29,8 @@ export default function Chat() {
       const response = await recommend(query);
       const result = response.data.recommendations;
 
-      
       if (result.length > 0) {
-		const botText = result.map((item: any) => `${item.manufacturer} ${item.model_name} - ${item.price}`).join('\n\n');
+		const botText = result.map((item: Product) => `${item.manufacturer} ${item.model_name} - ${item.price}`).join('\n\n');
         setMessages((prev) => [...prev, { sender: 'bot', text: botText }]);
         
         /*botText = result.forEach((item: any) => {
