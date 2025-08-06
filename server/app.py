@@ -31,7 +31,9 @@ Session(app)
 
 CORS(
     app,
-    origins=["http://localhost:3000", "http://127.0.0.1:3000", "https://stratus-frontend.vercel.app"],
+    origins=["http://localhost:3000", 
+             "http://127.0.0.1:3000", 
+             "https://stratus-flax.vercel.app"],
     supports_credentials=True
 )
 
