@@ -122,14 +122,6 @@ def recommend():
               .to_dict(orient="records"))
     return jsonify({"recommendations": result})
 
-
-
-@app.route("/")
-def hi():
-    return "backend is up"
-
-
-
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5001))
     app.run(host='0.0.0.0', port=port)
