@@ -55,8 +55,8 @@ source venv/bin/activate | (Windows: .\venv\Scripts\activate)
 pip install -r requirements.txt
 
 <h4>4. ENV CONFIG:</h4>
-REDIS_URL= your_redis_url
-SECRET_KEY= your_flask_secret_key
+<p>REDIS_URL= your_redis_url</p>
+<p>SECRET_KEY= your_flask_secret_key</p>
 
 <h4>5. DATABASE SETUP:</h4>
 Ensure the following files are present in the data/ folder:
