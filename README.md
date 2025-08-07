@@ -60,8 +60,8 @@ pip install -r requirements.txt
 
 <h4>5. DATABASE SETUP:</h4>
 Ensure the following files are present in the data/ folder:
-    -laptops.pkl
-    -laptop_embeddings.npy
+    <p>-laptops.pkl</p>
+    <p>-laptop_embeddings.npy</p>
 
 <h4>6. RUN THE APPLICATION:</h4>
 
