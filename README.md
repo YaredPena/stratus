@@ -18,10 +18,10 @@
 
 <h2>CORE FUNCTIONALITIES:</h2>
 <p>
-- 🔐 **User Authentication**: Users can sign up, log in, and log out securely with Redis-backed sessions.<br>
-- 🔍 **RAG-based AI Recommendations**: Stratus uses a Sentence Transformer model to provide personalized laptop suggestions using semantic search.<br>
-- ⚡ **Fullstack Integration**: Next.js for the frontend, Flask + Redis for backend processing and stateful sessions.<br>
-- 📦 **Model-backed Inference**: Embeddings and product data are pre-loaded for instant response.
+- 🔐 User Authentication: Users can sign up, log in, and log out securely with Redis-backed sessions.<br>
+- 🔍 RAG-based AI Recommendations: Stratus uses a Sentence Transformer model to provide personalized laptop suggestions using semantic search.<br>
+- ⚡ Fullstack Integration: Next.js for the frontend, Flask + Redis for backend processing and stateful sessions.<br>
+- 📦 Model-backed Inference: Embeddings and product data are pre-loaded for instant response.
 </p>
 
 <h2>AI STORYTELLING:</h2>
