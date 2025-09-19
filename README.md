@@ -11,8 +11,10 @@
 ![Python](https://img.shields.io/badge/python-%233776AB.svg?style=for-the-badge&logo=python&logoColor=white)
 
 <h2>THE WEBSITE:</h2>
-<img width="1437" height="708" alt="Screenshot 2025-08-06 at 3 27 03 PM" src="https://github.com/user-attachments/assets/34f15cf3-a755-4787-934b-796e662fa36f" /> 
+<img width="1437" height="708" alt="Screenshot 2025-08-06 at 3 27 03 PM" src="https://github.com/user-attachments/assets/34f15cf3-a755-4787-934b-796e662fa36f" />
+<img width="1378" height="720" alt="Screenshot 2025-09-18 at 9 11 17 PM" src="https://github.com/user-attachments/assets/68c757ca-8aa2-4008-879b-0e572eb3c610" />
 <img width="1378" height="718" alt="Screenshot 2025-09-18 at 9 11 28 PM" src="https://github.com/user-attachments/assets/a5e3faeb-ffc6-450b-8ed5-8b3bde8238b0" />
+<img width="1379" height="726" alt="Screenshot 2025-09-18 at 9 11 42 PM" src="https://github.com/user-attachments/assets/fceff57b-79d5-4fb7-be43-3bd5a4eb5741" />
 
 
 
