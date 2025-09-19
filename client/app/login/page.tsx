@@ -26,7 +26,7 @@ export default function Login() {
       setSuccess(response.data.message ?? null);
       console.log(response.data);
       router.push('/chat');
-    } catch (error: unknown) { // wouldn't error be a string
+    } catch (error: unknown) {
       const err = error as AxiosError<{ error: string}>;
       console.error(err);
       setError(err.response?.data?.error ?? 'login failed.');
@@ -82,7 +82,6 @@ export default function Login() {
 
       <div className={styles.right}>
         <h2>Stratus</h2>
-        {/*<p>Stratus Text</p>*/}
       </div>
     </main>
   );

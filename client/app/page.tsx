@@ -15,9 +15,7 @@ export default function Home() {
         <Link href="/signup"><button className={styles.enterButton}>Get Started</button></Link>
       </div>
 
-      {/* what we provide */}
       <div className={styles.features}>
-
         <div className={styles.featureCard}>
           <h3>AI Recommendations</h3>
           <p> Our RAG-based AI analyzes specs, performance, and pricing to suggest the
@@ -37,7 +35,6 @@ export default function Home() {
 
       </div>
 
-      {/* FOOTER */}
       <footer className={styles.footer}>
         <p>© {new Date().getFullYear()} Stratus </p>
       </footer>

@@ -9,6 +9,7 @@ import numpy as np
 from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+from rag_pipeline import get_rag_pipeline
 
 load_dotenv()
 
@@ -36,6 +37,8 @@ CORS(
              "https://stratus-flax.vercel.app"],
     supports_credentials=True
 )
+
+qa_pipeline = get_rag_pipeline()
 
 def email_key(email: str) -> str:
     return f"user:{email}"
@@ -99,28 +102,17 @@ def logout():
 ## rag end point
 @app.route("/recommend", methods=["POST"])
 def recommend():
-    global df, embeddings, model
-
-    if df is None or embeddings is None or model is None:
-        print("🔁 Loading model and data files...")
-        df = pd.read_pickle("data/laptops.pkl")
-        embeddings = np.load("data/laptop_embeddings.npy")
-        model = SentenceTransformer("all-MiniLM-L6-v2")
-        print("✅ Model and data loaded.")
-
     body = request.get_json() or {}
     query = body.get("query", "").strip()
     if not query:
         return jsonify({"error": "query required!"}), 400
 
-    q_vec = model.encode([query])
-    sims = cosine_similarity(q_vec, embeddings)[0]
-    top_idx = sims.argsort()[-3:][::-1]
+    response = qa_pipeline.invoke({"query": query})
+    return jsonify({
+        "answer": response["result"],
+        "sources": [doc.metadata for doc in response["source_documents"]]
+    })
 
-    result = (df.iloc[top_idx][["manufacturer", "model_name", "price_usd"]]
-              .rename(columns={"price_usd": "price"})
-              .to_dict(orient="records"))
-    return jsonify({"recommendations": result})
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5001))

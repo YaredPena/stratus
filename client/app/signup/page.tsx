@@ -29,12 +29,11 @@ export default function Signup() {
             console.log(response.data);
             router.push('/chat');
         } catch (error:unknown) {
-            const err = error as AxiosError<{ error: string}>;
+            const err = error as AxiosError<{ error: string }>;
             console.error(err);
             setError(err.response?.data?.error ?? 'signup failed.');
         }
     };
-
 
     return (
         <main className={styles.main}>
@@ -98,7 +97,6 @@ export default function Signup() {
 
             <div className={styles.right}>
             <h2>Stratus</h2>
-            {/*<p>Stratus Text</p>*/}
             </div>
         </main>
     );
