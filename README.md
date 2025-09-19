@@ -11,7 +11,10 @@
 ![Python](https://img.shields.io/badge/python-%233776AB.svg?style=for-the-badge&logo=python&logoColor=white)
 
 <h2>THE WEBSITE:</h2>
-<img width="1437" height="708" alt="Screenshot 2025-08-06 at 3 27 03 PM" src="https://github.com/user-attachments/assets/34f15cf3-a755-4787-934b-796e662fa36f" />
+<img width="1437" height="708" alt="Screenshot 2025-08-06 at 3 27 03 PM" src="https://github.com/user-attachments/assets/34f15cf3-a755-4787-934b-796e662fa36f" /> 
+<img width="1378" height="718" alt="Screenshot 2025-09-18 at 9 11 28 PM" src="https://github.com/user-attachments/assets/a5e3faeb-ffc6-450b-8ed5-8b3bde8238b0" />
+
+
 
 <h2>THE GOAL:</h2>
 <p> Are you looking for a laptop but can't pin down what brand or model fits you best? Stratus was built to help users receive quality recommendations based on their personal needs, without digging through endless reviews or spec lists. </p>
