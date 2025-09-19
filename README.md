@@ -19,7 +19,7 @@
 
 
 <h2>THE GOAL:</h2>
-<p> Are you looking for a laptop but can't pin down what brand or model fits you best? Stratus was built to help users receive quality recommendations based on their personal needs, without digging through endless reviews or spec lists. </p>
+<p> Looking for a laptop but can't pin down what brand or model fits you best? Stratus was built to help users receive quality recommendations based on their personal needs, without digging through endless reviews or spec lists. </p>
 
 <h2>CORE FUNCTIONALITIES:</h2>
 <p>
